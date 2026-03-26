@@ -1,20 +1,31 @@
-export const cosineSimilarity = (a, b) => {
+export const cosineSimilarity = (vecA, vecB) => {
+
+ if(vecA.length !== vecB.length) return 0
 
  let dotProduct = 0
- let normA = 0
- let normB = 0
+ let magA = 0
+ let magB = 0
 
- for (let i = 0; i < a.length; i++) {
+ for(let i = 0; i < vecA.length; i++){
 
-   dotProduct += a[i] * b[i]
-   normA += a[i] * a[i]
-   normB += b[i] * b[i]
+  dotProduct += vecA[i] * vecB[i]
+
+  magA += vecA[i] * vecA[i]
+
+  magB += vecB[i] * vecB[i]
 
  }
 
- normA = Math.sqrt(normA)
- normB = Math.sqrt(normB)
+ magA = Math.sqrt(magA)
+ magB = Math.sqrt(magB)
 
- return dotProduct / (normA * normB)
+ return dotProduct / (magA * magB)
 
 }
+
+// Score meaning
+
+// 1 = very similar
+// 0.8 = related
+// 0.5 = somewhat related
+// 0 = unrelated

@@ -1,21 +1,34 @@
-import nlp from "compromise"
-import { removeStopwords } from "stopword"
-import { IGNORE_WORDS } from "../utils/ignoreWords.js"
+import { useAi } from "./aiServices.js";
 
-export const generateTags = (content) => {
+export const generateTags = async (content) => {
 
- let nouns = nlp(content)
-  .nouns()
-  .out("array")
+ const prompt = `
 
- nouns = nouns.map(w => w.toLowerCase())
+Extract 5 topic tags from the text.
 
- nouns = removeStopwords(nouns)
+Rules:
+- each tag must be 1 or 2 words
+- focus on technologies, concepts, topics
+- nouns only
+- lowercase only
+- no sentences
+- no numbering
+- no punctuation
+- comma separated output only
 
- nouns = nouns.filter(w => !IGNORE_WORDS.includes(w))
+Text:
+${content}
 
- const unique = [...new Set(nouns)]
+`
 
- return unique.slice(0,5)
+ const raw = await useAi(prompt);
 
-}
+ const tags = raw
+  .split(",")
+  .map(t => t.trim())
+  .filter(t => t.length > 2)
+  .slice(0,5);
+
+ return tags;
+
+};

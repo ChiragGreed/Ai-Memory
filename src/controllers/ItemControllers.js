@@ -1,6 +1,9 @@
-import itemModel from "../Models/ItemModel.js";
+import itemModel from "../models/itemModel.js";
 import { createEmbedding } from "../services/embeddingService.js"
 import { generateTags } from "../services/tagsService.js";
+import { RelatedItemService } from "../services/relatedItemsService.js"
+import { semanticSearch } from "../services/semanticSearchService.js"
+
 
 export const saveItem = async (req, res) => {
 
@@ -28,4 +31,60 @@ export const saveItem = async (req, res) => {
 }
 
 
+export const getRelatedItems = async (req, res) => {
+    try {
+        const { itemId } = req.params
+
+        const related = await RelatedItemService(itemId)
+
+        res.json({
+            success: true,
+            related
+        })
+    }
+    catch (err) {
+        res.status(500).json({
+            error: err.message
+        })
+    }
+
+}
+
+
+export const semanticSearchItems = async (req, res) => {
+
+ try{
+
+  const { query } = req.query
+
+  if(!query){
+
+   return res.status(400).json({
+    error: "Query is required"
+   })
+
+  }
+
+  const results = await semanticSearch(query)
+
+  res.json({
+
+   total: results.length,
+
+   items: results
+
+  })
+
+ }
+ catch(err){
+
+  console.error(err)
+
+  res.status(500).json({
+   error: err.message
+  })
+
+ }
+
+}
 
