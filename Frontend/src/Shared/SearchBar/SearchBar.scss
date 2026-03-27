@@ -1,0 +1,33 @@
+.search_bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem;
+    background-color: rgb(203, 11, 11);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .search_bar_icon{
+        color: black;
+        background-color: rgb(207, 207, 207);
+        padding-block: 0.5rem;
+        padding-inline: 0.7rem;
+        border-bottom-left-radius: 1rem;
+    }
+
+    input {
+        border: none;
+        padding-block: 0.5rem;
+        padding-right: 1rem;
+        padding-left:0.3rem;
+        border-radius: 1rem;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        color: black;
+        background-color: rgb(207, 207, 207);
+    }
+
+}

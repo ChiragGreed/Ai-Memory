@@ -30,6 +30,21 @@ export const saveItem = async (req, res) => {
 
 }
 
+export const getItems = async (req,res)=>{
+    const items = await itemModel.find();
+
+    if(!items) return res.status(404).json({
+        message:"No items found",
+        success:false,
+        error:"No items found in database"
+    })
+
+    res.status(200).json({
+        message:"Items fetched for user",
+        success:true,
+        items
+    })
+}
 
 export const getRelatedItems = async (req, res) => {
     try {

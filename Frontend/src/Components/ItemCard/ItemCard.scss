@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+// ── Variables 
+$ink: #f5f5f5;
+$ink2: rgb(19, 19, 19);
+$paper: #f5f2ec;
+$accent: #c8401a;
+$muted: #9e9a93;
+$border: rgba(14, 14, 14, 0.12);
+$card-bg: #ffffff33;
+$tag-bg: #8d8c8a;
+$link-bg: #8d8c8a;
+
+// ── Card Grid 
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+// ── Item Card 
+.item-card {
+    background: $card-bg;
+    backdrop-filter: blur(10px);
+    border: 1px solid $border;
+    border-radius: 1rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    // Accent bar on top
+    &::before {
+        content: '';
+        display: block;
+        height: 3px;
+        background: $accent;
+        width: 0;
+        transition: width 0.4s ease;
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+
+        &::before {
+            width: 100%;
+        }
+    }
+
+    // ── Inner padding wrapper
+    &__body {
+        padding: 1.75rem 1.75rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex: 1;
+    }
+
+    // ── Title
+    &__title {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $ink;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+        margin: 0;
+    }
+
+    // ── Summary
+    &__summary {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 300;
+        color: darken($muted, 10%);
+        line-height: 1.65;
+        margin: 0;
+    }
+
+    // ── Tags
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    &__tag {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: $ink2;
+        background: $tag-bg;
+        border: 1px solid $border;
+        border-radius: 0.5rem;
+        padding: 0.3rem 0.65rem;
+        transition: background 0.2s, color 0.2s;
+
+        &:hover {
+            background: $ink2;
+            color: $paper;
+        }
+    }
+
+    // ── URL Footer
+    &__footer {
+        border-top: 1px solid $border;
+        padding: 1rem 1.75rem;
+        background: #faf9f6;
+    }
+
+    &__link {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.75rem;
+        font-weight: 400;
+        background-color: $accent;
+        border-radius: 0.5rem;
+        padding-inline: 0.3rem;
+        padding-block: 0.6rem;
+        color: rgb(226, 239, 246);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        transition: gap 0.2s ease;
+
+        &::before {
+            content: '→';
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        &:hover {
+            gap: 0.85rem;
+            text-decoration: underline;
+        }
+    }
+}
+
+// ── Empty / Loading states
+.items-empty {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: $muted;
+    text-align: center;
+    padding: 4rem 2rem;
+    font-style: italic;
+}
