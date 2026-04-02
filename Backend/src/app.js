@@ -15,7 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const publicFile = path.join(__dirname, "../", "public")
+const publicFile = path.join(__dirname, "../", "public/dist")
 
 app.use(express.static(publicFile))
 
