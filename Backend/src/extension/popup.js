@@ -1,4 +1,4 @@
-const API = "https://second-brain-td6n.onrender.com/api"
+const API = "http://localhost:9000/api"
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -17,6 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("saveBtn")
         .onclick = async () => { saveItemHandler() }
 
+    document
+        .getElementById("logoutBtn")
+        .onclick = logoutHandler
+
 })
 
 // LOGIN
@@ -26,40 +30,27 @@ async function loginHandler() {
 
     const password = document.getElementById("password").value;
 
+    console.log("hey");
 
     try {
 
-        const res =
-            await fetch(
+        const res = await fetch(`${API}/auth/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
 
-                `${API}/auth/login`,
+            body: JSON.stringify({
+                username, password
+            })
 
-                {
+        }
 
-                    method: "POST",
-
-                    headers: {
-
-                        "Content-Type":
-                            "application/json"
-
-                    },
-
-                    body:
-                        JSON.stringify({
-
-                            username,
-                            password
-
-                        })
-
-                }
-
-            )
+        )
 
 
-        const data =
-            await res.json()
+        const data = await res.json()
 
 
         if (data.token) {
@@ -77,11 +68,7 @@ async function loginHandler() {
 
         else {
 
-            document
-                .getElementById("message")
-                .innerText =
-                data.error
-                || "Login failed"
+            document.getElementById("message").innerText = data.error || "Login failed"
 
         }
 
@@ -90,11 +77,26 @@ async function loginHandler() {
     catch (err) {
 
         document
-            .getElementById("message")
-            .innerText =
-            "Server error"
+            .getElementById("message").innerText = "Server error"
 
     }
+
+}
+
+function logoutHandler() {
+
+    localStorage.removeItem("token")
+
+    document
+        .getElementById("authView")
+        .style.display =
+        "block"
+
+
+    document
+        .getElementById("saveView")
+        .style.display =
+        "none"
 
 }
 

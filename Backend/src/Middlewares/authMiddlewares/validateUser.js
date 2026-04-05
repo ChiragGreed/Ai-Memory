@@ -1,5 +1,7 @@
 import JWT from 'jsonwebtoken'
 
+
+
 const validateUser = async (req, res, next) => {
     const { token } = req.cookies;
 
@@ -9,6 +11,7 @@ const validateUser = async (req, res, next) => {
         err: "No token found in cookies"
     })
 
+
     const decodedToken = JWT.verify(token, process.env.JWT_SECRET);
 
 
@@ -17,6 +20,8 @@ const validateUser = async (req, res, next) => {
         success: false,
         err: "Invalid token"
     })
+
+
 
     req.user = { userid: decodedToken.userid }
 

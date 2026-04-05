@@ -28,7 +28,19 @@ const itemSchema = new mongoose.Schema({
         type: String,
     },
 
+    summary: {
+        type: String,
+        default: function () {
 
+            if (!this.content) return "";
+
+            const words = this.content.split(" ");
+
+            return words.slice(0, 30).join(" ") + "...";
+
+        }
+    },
+    
     tags: {
         type: [String],
         required: true,
@@ -43,9 +55,9 @@ const itemSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Collections",
     },
-    userId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Users"
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users"
     }
 
 },

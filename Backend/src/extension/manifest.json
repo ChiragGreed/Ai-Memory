@@ -1,22 +1,22 @@
 {
- "manifest_version": 3,
+  "manifest_version": 3,
 
- "name": "Save to Memory",
+  "name": "Vexa",
 
- "version": "1.0",
+  "version": "1.0",
 
- "description": "Save anything to AI memory",
+  "description": "Save anything to Vexa, your second brain",
 
- "permissions": [
-  "activeTab",
-  "scripting"
- ],
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
 
- "action": {
-  "default_popup": "popup.html"
- },
+  "action": {
+    "default_popup": "popup.html"
+  },
 
- "host_permissions": [
-  "http://localhost:9000/*"
- ]
+  "host_permissions": [
+    "http://localhost:9000/*"
+  ]
 }

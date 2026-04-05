@@ -3,6 +3,7 @@ import JWT from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 
 
+
 export const register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -73,7 +74,8 @@ export const login = async (req, res) => {
         res.status(201).json({
             message: "User Logged in",
             success: true,
-            user
+            user,
+            token
         })
     } catch (err) {
         res.status(400).json({
@@ -83,6 +85,24 @@ export const login = async (req, res) => {
         });
     }
 }
+
+export const logout = async (req, res) => {
+
+    const { token } = req.cookies;
+
+    if (!token) return res.status(400).json({
+        message: "Token not found"
+    })
+
+    res.clearCookie('token');
+    
+
+    res.status(200).json({
+        message: "User Logged out"
+    })
+}
+
+
 
 export const Protected = async (req, res) => {
     const { token } = req.cookies;

@@ -3,9 +3,12 @@ import '../Style/auth.scss';
 import useAuth from '../../Hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
 
-const logomark = (
-  <svg viewBox="0 0 24 24">
-    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+const VexaLogo = ({ size = 28 }) => (
+  <svg width={size} height={size} viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+    <rect width="72" height="72" rx="14" fill="#111116"/>
+    <polygon points="13,17 27,17 36,44 45,17 59,17 36,57" fill="#e8a930"/>
+    <polygon points="31,31 36,44 41,31 36,37" fill="#111116"/>
+    <circle cx="36" cy="57" r="5" fill="#f0eee8"/>
   </svg>
 );
 
@@ -28,8 +31,8 @@ const Login = () => {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-logo">
-          <div className="auth-logo__mark">{logomark}</div>
-          <span className="auth-logo__name">Second Brain</span>
+          <VexaLogo size={28} />
+          <span className="auth-logo__name">Vexa</span>
         </div>
 
         <h1 className="auth-title">Welcome back</h1>
