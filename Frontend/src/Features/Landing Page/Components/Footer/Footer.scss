@@ -1,0 +1,40 @@
+@import "../../Style/LandingPage.scss";
+
+
+footer {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 30px 52px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+
+.footer-brand {
+
+    display: flex;
+
+    gap: 8px;
+
+    align-items: center;
+
+}
+
+
+
+.footer-note {
+
+    font-family: 'JetBrains Mono';
+
+    font-size: 11px;
+
+    color: var(--ink3);
+
+}

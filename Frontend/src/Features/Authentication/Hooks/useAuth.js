@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../State/AuthContext'
-import { loginAPi, protectedApi, registerApi } from '../Services/AuthApi';
+import { loginAPi, logoutApi, protectedApi, registerApi } from '../Services/AuthApi';
 
 const useAuth = () => {
     const context_auth = useContext(AuthContext);
@@ -45,6 +45,25 @@ const useAuth = () => {
 
     };
 
+    const logoutHandler = async () => {
+
+        try {
+            setLoading(true);
+
+            await logoutApi();
+            setUser(null);
+            setLoading(false);
+        }
+        catch (err) {
+            console.log(err);
+        }
+        finally {
+            setLoading(false)
+        }
+
+
+    };
+
     const protectedHandler = async () => {
 
         try {
@@ -58,7 +77,7 @@ const useAuth = () => {
 
     }
 
-    return { context_auth, registerHandler, loginHandler, protectedHandler }
+    return { context_auth, registerHandler, loginHandler, logoutHandler, protectedHandler }
 }
 
 export default useAuth

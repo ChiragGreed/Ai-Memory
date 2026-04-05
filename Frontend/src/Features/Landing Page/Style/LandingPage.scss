@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+:root {
+
+    --bg: #0a0a0d;
+    --bg2: #0f0f14;
+    --bg3: #15151c;
+    --bg4: #1c1c25;
+
+    --border: rgba(255, 255, 255, 0.06);
+    --border2: rgba(255, 255, 255, 0.11);
+
+    --ink: #f0eee8;
+    --ink2: #9b99a3;
+    --ink3: #55535e;
+
+    --amber: #e8a930;
+    --amber2: rgba(232, 169, 48, 0.13);
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+    font-family: 'Syne', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+
+    -webkit-font-smoothing: antialiased;
+}
+
+.section-divider {
+
+    width: 100%;
+    height: 1px;
+
+    background: linear-gradient(90deg,
+            transparent,
+            var(--border2),
+            transparent);
+
+}
+
+
+.btn {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: .15s;
+
+    border: 1px solid transparent;
+
+}
+
+.btn-primary {
+
+    background: var(--amber);
+    color: #0a0a0d;
+
+}
+
+.btn-primary:hover {
+
+    transform: translateY(-1px);
+    opacity: .9;
+
+}
+
+.btn-outline {
+
+    border: 1px solid var(--border2);
+    color: var(--ink);
+
+}
+
+.btn-outline:hover {
+
+    background: var(--bg3);
+
+}
+
+.btn-ghost {
+
+    color: var(--ink2);
+
+}
+
+.btn-ghost:hover {
+
+    color: var(--ink);
+    background: var(--bg3);
+
+}
+
+.btn-lg {
+
+    padding: 14px 26px;
+    font-size: 15px;
+    border-radius: 12px;
+
+}
+
+.blob {
+
+    position: fixed;
+    border-radius: 50%;
+
+    filter: blur(130px);
+
+    pointer-events: none;
+
+    z-index: 0;
+
+}
+
+
+
+.blob-1 {
+
+    width: 560px;
+    height: 560px;
+
+    background: rgba(232, 169, 48, 0.055);
+
+    top: -200px;
+    left: -120px;
+
+}
+
+
+
+.blob-2 {
+
+    width: 420px;
+    height: 420px;
+
+    background: rgba(232, 169, 48, 0.035);
+
+    bottom: 5%;
+    right: -100px;
+
+}

@@ -15,7 +15,12 @@ export const loginAPi = async ({ username, password }) => {
     return response.data;
 }
 
-export const protectedApi = async ()=>{
+export const logoutApi = async () => {
+    const response = await api.post(`/logout`);
+    return response.data;
+}
+
+export const protectedApi = async () => {
     const response = await api.get('/protected');
     return response.data;
 }

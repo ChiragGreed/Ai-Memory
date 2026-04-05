@@ -1,0 +1,39 @@
+.logout-btn {
+
+    gap: 10px;
+
+    font-size: 13px;
+
+    border-radius: 10px;
+
+    padding: 10px 16px;
+
+}
+
+
+
+.logout-icon {
+
+    display: flex;
+
+    opacity: .7;
+
+}
+
+
+
+.logout-btn:hover {
+
+    border-color: rgba(232, 169, 48, 0.35);
+
+    color: var(--amber);
+
+}
+
+
+
+.logout-btn:active {
+
+    transform: translateY(1px);
+
+}

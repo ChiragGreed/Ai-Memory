@@ -1,0 +1,63 @@
+@import "../../Style/LandingPage.scss";
+
+.auth-cta{
+
+  display:flex;
+
+  gap:20px;
+
+  padding:100px 52px;
+
+}
+
+
+
+.auth-card{
+
+  flex:1;
+
+  padding:48px;
+
+  border-radius:16px;
+
+  border:1px solid var(--border);
+
+}
+
+
+
+.auth-card--login{
+
+  background:var(--bg2);
+
+}
+
+
+
+.auth-card--register{
+
+  background:var(--amber);
+
+  color:#0a0a0d;
+
+}
+
+
+
+.auth-card-title{
+
+  font-family:'Instrument Serif';
+
+  font-size:32px;
+
+  margin-bottom:12px;
+
+}
+
+
+
+.auth-card-sub{
+
+  margin-bottom:20px;
+
+}

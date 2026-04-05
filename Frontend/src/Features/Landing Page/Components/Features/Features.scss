@@ -1,0 +1,116 @@
+@import "../../Style/LandingPage.scss";
+
+
+.features {
+
+    padding: 120px 52px;
+
+}
+
+
+
+.section-label {
+
+    font-family: 'JetBrains Mono';
+
+    font-size: 10px;
+
+    letter-spacing: .15em;
+
+    color: var(--amber);
+
+}
+
+
+
+.section-title {
+
+    font-family: 'Instrument Serif';
+
+    font-size: 48px;
+
+    margin-top: 12px;
+
+}
+
+
+
+.features-grid {
+
+    margin-top: 60px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 2px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+}
+
+
+
+.feature-card {
+
+    background: var(--bg2);
+
+    padding: 36px;
+
+    border-right: 1px solid var(--border);
+
+}
+
+
+
+.features-grid-2 {
+
+    margin-top: 12px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+
+}
+
+
+
+.feature-card-2 {
+
+    background: var(--bg2);
+
+    padding: 26px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+}
+
+
+
+.feature-name {
+
+    font-weight: 700;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+.feature-desc {
+
+    font-size: 14px;
+
+    color: var(--ink2);
+
+    line-height: 1.6;
+
+}

@@ -9,6 +9,7 @@ import ItemDets from './Features/Items/Pages/ItemDets'
 import SearchResult from './Features/Search/Pages/SearchResult'
 import Register from './Features/Authentication/Pages/RegisterPage/Register'
 import Login from './Features/Authentication/Pages/LoginPage/Login'
+import LandingPage from './Features/Landing Page/Page/LandingPage'
 
 
 const AppRouter = () => {
@@ -18,12 +19,13 @@ const AppRouter = () => {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path='/' element={<LandingPage />} />
 
                 <Route path='/register' element={<Register />} />
 
                 <Route path='/login' element={<Login />} />
 
-                <Route path="/" element={<App />}>
+                <Route path="/App" element={<App />}>
 
                     <Route index path='inbox' element={<Dashboard />} />
 

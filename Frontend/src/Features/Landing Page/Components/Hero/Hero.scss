@@ -1,0 +1,79 @@
+@import "../../Style/LandingPage.scss";
+
+
+.hero{
+
+  min-height:100vh;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:120px 24px 80px;
+
+}
+
+
+
+.hero-title{
+
+  font-family:'Instrument Serif', serif;
+
+  font-size:clamp(48px,7vw,96px);
+
+  line-height:1.0;
+
+  letter-spacing:-0.03em;
+
+}
+
+
+
+.hero-title em{
+
+  color:var(--amber);
+
+}
+
+
+
+.hero-sub{
+
+  margin-top:24px;
+
+  max-width:520px;
+
+  color:var(--ink2);
+
+  line-height:1.7;
+
+}
+
+
+
+.hero-actions{
+
+  display:flex;
+  gap:12px;
+
+  margin-top:40px;
+
+}
+
+
+
+.hero-note{
+
+  margin-top:16px;
+
+  font-family:'JetBrains Mono';
+
+  font-size:11px;
+
+  color:var(--ink3);
+
+}

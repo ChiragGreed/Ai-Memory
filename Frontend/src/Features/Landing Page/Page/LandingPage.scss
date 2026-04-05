@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+:root {
+    --bg: #0a0a0d;
+    --bg2: #0f0f14;
+    --bg3: #15151c;
+    --border: rgba(255, 255, 255, 0.06);
+
+    --ink: #f0eee8;
+    --ink2: #9b99a3;
+
+    --amber: #e8a930;
+    --amber2: rgba(232, 169, 48, 0.13);
+}
+
+body {
+    margin: 0;
+    font-family: 'Syne';
+    background: var(--bg);
+    color: var(--ink);
+}
+
+.vexa {
+    overflow-x: hidden;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: rgba(10, 10, 13, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 20px;
+}
+
+.hero-title {
+    font-family: 'Instrument Serif';
+    font-size: 64px;
+}
+
+.hero-sub {
+    color: var(--ink2);
+    max-width: 500px;
+    margin-top: 20px;
+}
+
+/* BUTTON SYSTEM */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 10px 18px;
+    border-radius: 10px;
+
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: all .15s ease;
+
+    border: 1px solid transparent;
+}
+
+
+/* primary */
+
+.btn-primary {
+    background: var(--amber);
+    color: #0a0a0d;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    opacity: .9;
+}
+
+
+/* outline */
+
+.btn-outline {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--ink);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: var(--bg3);
+}
+
+
+/* ghost */
+
+.btn-ghost {
+    color: var(--ink2);
+    background: transparent;
+}
+
+.btn-ghost:hover {
+    background: var(--bg3);
+    color: var(--ink);
+}
+
+
+/* large */
+
+.btn-lg {
+    padding: 14px 26px;
+    font-size: 15px;
+    border-radius: 12px;
+}
+
+
+.btn-amber-lg {
+    background: var(--amber);
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-weight: 700;
+    margin-top: 30px;
+}
+
+.features {
+    padding: 120px 40px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.feature-card,
+.feature-card-2 {
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg2);
+}
+
+.section-title {
+    font-family: 'Instrument Serif';
+    font-size: 42px;
+}
+
+.install {
+    padding: 120px 40px;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.step-num {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-num--active {
+    background: var(--amber);
+    color: black;
+}
+
+.step-num--dim {
+    border: 1px solid var(--border);
+}
+
+.auth-cta {
+    display: flex;
+    gap: 20px;
+    padding: 80px 40px;
+}
+
+.auth-card {
+    flex: 1;
+    padding: 40px;
+    border-radius: 16px;
+}
+
+.auth-card--login {
+    background: var(--bg2);
+}
+
+.auth-card--register {
+    background: var(--amber);
+    color: black;
+}
+
+footer {
+    padding: 30px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: .6s;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
