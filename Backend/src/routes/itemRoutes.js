@@ -1,8 +1,10 @@
 import express from 'express';
-import { saveItem, getItems, getRelatedItems, semanticSearchItems, getSingleItem, resurfaceItems } from '../controllers/itemControllers.js';
+import { saveItem, getItems, getRelatedItems, semanticSearchItems, getSingleItem, resurfaceItems, downloadExtension } from '../controllers/itemControllers.js';
 import validateUser from '../Middlewares/authMiddlewares/validateUser.js';
 
 const ItemRouter = express.Router();
+
+ItemRouter.get('/downloadExtension', downloadExtension);
 
 ItemRouter.post('/save', validateUser, saveItem);
 

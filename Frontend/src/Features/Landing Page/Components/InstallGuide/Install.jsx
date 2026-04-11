@@ -1,6 +1,17 @@
+import { useEffect } from "react";
+import useItems from "../../../Items/Hook/useItems";
 import "./Install.scss";
+import { useState } from "react";
 
 export default function Install() {
+
+    const { downloadExtensionHandler } = useItems();
+    const [ExtensionUrl, setExtensionUrl] = useState();
+
+    useEffect(() => {
+        setExtensionUrl(downloadExtensionHandler());
+        console.log(ExtensionUrl);
+    }, [])
 
     return (
 
@@ -64,7 +75,7 @@ export default function Install() {
             <div className="download-cta">
 
                 <a
-                    href="vexa-extension.zip"
+                    href={ExtensionUrl}
                     download
                     className="btn btn-primary btn-lg"
                 >

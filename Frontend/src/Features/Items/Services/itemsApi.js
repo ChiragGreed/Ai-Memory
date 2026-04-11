@@ -1,9 +1,15 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'https://second-brain-td6n.onrender.com/api/items',
+    baseURL: 'https://localhost:9000/api/items',
     withCredentials: true
 })
+
+export const downloadExtensionApi = async () => {
+    const response = await api.get('/downloadExtension', { responseType: 'blob' });
+    console.log(response) 
+    return response.data;
+}
 
 export const getItemsApi = async () => {
     const response = await api.get('/getItems');

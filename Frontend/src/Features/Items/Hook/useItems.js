@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { getItemsApi, getRelatedItemApi, getSingleItemApi, resurfacingItemsApi, searchItemsApi } from '../Services/itemsApi.js'
+import { downloadExtensionApi, getItemsApi, getRelatedItemApi, getSingleItemApi, resurfacingItemsApi, searchItemsApi } from '../Services/itemsApi.js'
 import { itemsContext } from "../State/ItemsContext";
 
 
@@ -7,6 +7,14 @@ const useItems = () => {
 
     const context_items = useContext(itemsContext);
     const { setItems, setSingleItem, setResurfacedItems, setLoading } = context_items;
+
+    const downloadExtensionHandler = async () => {
+        const response = await downloadExtensionApi();
+
+        const url = window.URL.createObjectURL(new Blob([response]));
+
+        return url;
+    }
 
     const getItemsHandler = async () => {
 
@@ -30,7 +38,7 @@ const useItems = () => {
     const getSingleItemHandler = async (itemId) => {
         try {
             setLoading(true);
-            
+
             const response = await getSingleItemApi(itemId);
             setSingleItem(response.item);
             setLoading(false);
@@ -100,7 +108,7 @@ const useItems = () => {
 
     }
 
-    return ({ context_items, getItemsHandler, getSingleItemHandler, resurfaceItemsHandler, getRelatedItemHandler, searchItemsHandler })
+    return ({ context_items, downloadExtensionHandler, getItemsHandler, getSingleItemHandler, resurfaceItemsHandler, getRelatedItemHandler, searchItemsHandler })
 }
 
 export default useItems
