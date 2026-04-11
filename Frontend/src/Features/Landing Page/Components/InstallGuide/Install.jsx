@@ -80,7 +80,7 @@ export default function Install() {
                     className="btn btn-primary btn-lg"
                 >
 
-                    Download vexa-extension.zip
+                    Download Vexa clipper.zip
 
                 </a>
 
