@@ -66,7 +66,7 @@ export default function Install() {
             <div className="download-cta">
 
                 <a
-                    href='../../../../../../../../public/extension.zip' 
+                    href='/extension.zip' 
                     download="Vexa Clipper.zip"
                     className="btn btn-primary btn-lg"
                 >
