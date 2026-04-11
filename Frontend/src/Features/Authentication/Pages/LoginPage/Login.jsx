@@ -14,7 +14,8 @@ const VexaLogo = ({ size = 28 }) => (
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
-  const { loginHandler, protectedHandler } = useAuth();
+  const { loginHandler } = useAuth();
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,7 +25,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await loginHandler({ ...formData });
-    if (protectedHandler()) navigate('/app/inbox');
+    navigate('/app/inbox'); 
   };
 
   return (
