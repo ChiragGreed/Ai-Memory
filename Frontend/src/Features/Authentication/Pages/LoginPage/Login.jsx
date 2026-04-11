@@ -24,7 +24,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await loginHandler({ ...formData });
-    if (protectedHandler) navigate('/app/inbox');
+    if (protectedHandler()) navigate('/app/inbox');
   };
 
   return (
