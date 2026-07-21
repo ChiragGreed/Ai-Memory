@@ -103,8 +103,6 @@ export const logout = async (req, res) => {
     })
 }
 
-
-
 export const Protected = async (req, res) => {
     const { token } = req.cookies;
 

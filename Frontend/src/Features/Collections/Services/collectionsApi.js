@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'https://second-brain-td6n.onrender.com/api/collections',
+    baseURL: 'https://vexa-second-brain.onrender.com/api/collections',
     withCredentials: true
 })
 

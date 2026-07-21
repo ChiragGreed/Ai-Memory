@@ -21,7 +21,7 @@ app.use(express.static(publicFile))
 
 app.use(express.json());
 app.use(cors({
-    origin: 'https://second-brain-td6n.onrender.com',
+    origin: 'https://vexa-second-brain.onrender.com',
     credentials: true
 }));
 
