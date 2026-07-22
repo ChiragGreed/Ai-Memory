@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'https://vexa-second-brain.onrender.com/api/items',
+    baseURL: `${import.meta.env.VITE_API_BASE_URL}/api/items`,
     withCredentials: true
 })
 

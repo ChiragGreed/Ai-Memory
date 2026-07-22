@@ -1,49 +1,41 @@
 import { pipeline } from "@xenova/transformers";
+import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
+import { useEmbeddingGeneration } from "./aiServices.js";
 
-let extractor;
+// let extractor;
 
-async function loadModel() {
+// async function loadModel() {
 
- if (!extractor) {
+//  if (!extractor) {
 
-  extractor = await pipeline(
+//   extractor = await pipeline(
 
-   "feature-extraction",
+//    "feature-extraction",
 
-   "Xenova/all-MiniLM-L6-v2"
+//    "Xenova/all-MiniLM-L6-v2"
 
-  );
+//   );
 
- }
+//  }
 
- return extractor;
+//  return extractor;
 
-}
+// }
 
 export const createEmbedding = async (text) => {
 
- if (!text) {
+    if (!text) {
 
-  throw new Error("Text required");
+        throw new Error("Text required");
 
- }
+    }
 
- const model = await loadModel();
+    const splitter = new RecursiveCharacterTextSplitter({ chunkSize: 300, chunkOverlap: 0 });
+    
+    const chunks = await splitter.splitText(text);
 
- const output = await model(
+    const embeddings = await useEmbeddingGeneration(chunks);
 
-  text.slice(0,1500),
-
-  {
-
-   pooling: "mean",
-
-   normalize: true
-
-  }
-
- );
-
- return Array.from(output.data);
+    return embeddings;
 
 };

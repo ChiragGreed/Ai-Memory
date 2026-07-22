@@ -1,4 +1,4 @@
-const API = "https://second-brain-td6n.onrender.com/api"
+const API = "https://vexa-second-brain.onrender.com/api"
 
 document.addEventListener("DOMContentLoaded", () => {
 

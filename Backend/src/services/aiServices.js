@@ -1,14 +1,32 @@
 import "../config/dotenvConfig.js";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+import { MistralAIEmbeddings } from '@langchain/mistralai';
 
-const model = new ChatGoogleGenerativeAI({
+
+const GoogleGenAiModel = new ChatGoogleGenerativeAI({
   model: "gemini-2.5-flash-lite"
 });
 
-export const useAi = async (prompt) => {
+const MistralAiModel = new MistralAIEmbeddings({
+  model: "mistral-embed",
+})
 
-  const res = await model.invoke(prompt);
+export const useGoogleGenAi = async (prompt) => {
+
+  const res = await GoogleGenAiModel.invoke(prompt);
 
   return res.content;
 
+};
+
+
+export const useEmbeddingGeneration = async (chunks) => {
+  const res = await MistralAiModel.embedDocuments(chunks);
+  return res;
+}
+
+export const useMistralAi = async (prompt) => {
+
+  const res = await MistralAiModel.embedQuery(prompt);
+  return res.content;
 };
