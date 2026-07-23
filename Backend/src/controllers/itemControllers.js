@@ -4,12 +4,15 @@ import userModel from "../Models/userModel.js";
 import collectionModel from "../Models/collectionModel.js";
 import { createCollectionService, findCollectionByName } from "../services/collectionService.js";
 
-import { createEmbedding } from "../services/embeddingService.js";
+import { saveEmbedding } from "../services/embeddingService.js";
 import { generateTags } from "../services/tagsService.js";
 import { RelatedItemService } from "../services/relatedItemsService.js";
 import { semanticSearch } from "../services/semanticSearchService.js";
 import { getResurfacedItems } from "../services/resurfaceService.js";
 import { getLinkPreview } from "../utils/preview.util.js";
+import { Pinecone } from '@pinecone-database/pinecone';
+
+const pc = new Pinecone({ apiKey: process.env.PINCONE_API });
 
 
 export const saveItem = async (req, res) => {
@@ -52,9 +55,17 @@ export const saveItem = async (req, res) => {
 
 
         const tags = await generateTags(content);
-        const embedding = await createEmbedding(content);
+
+        const records = await saveEmbedding(content);
         const preview = await getLinkPreview(url);
 
+        const index = pc.index('vexa-embeddings');
+
+        const pinconeStore = await index.upsert({
+            records: records.map((rec, idx) => {
+                return { id: `${idx}`, values: rec.embeddings, metadata: { text: rec.text } }
+            })
+        })
 
 
         const item = await itemModel.create({
@@ -64,7 +75,6 @@ export const saveItem = async (req, res) => {
             url,
             content,
             tags,
-            embedding,
             collectionId,
             userId: userid
         });
@@ -169,7 +179,6 @@ export const semanticSearchItems = async (req, res) => {
         res.json({
 
             total: results.length,
-
             items: results
 
         })

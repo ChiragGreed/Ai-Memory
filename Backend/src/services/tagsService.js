@@ -1,4 +1,4 @@
-import { useGoogleGenAi } from "./aiServices.js";
+import { useGroqModel } from "./aiServices.js";
 
 export const generateTags = async (content) => {
 
@@ -21,7 +21,7 @@ ${content}
 
 `
 
- const raw = await useGoogleGenAi(prompt);
+ const raw = await useGroqModel(prompt);
 
  const tags = raw
   .split(",")
@@ -29,6 +29,6 @@ ${content}
   .filter(t => t.length > 2)
   .slice(0,5);
 
- return ['tags','tags','tags','tags','tags'];
+ return tags;
 
 };

@@ -40,17 +40,11 @@ const itemSchema = new mongoose.Schema({
 
         }
     },
-    
+
     tags: {
         type: [String],
         required: true,
     },
-
-    embedding: {
-        type: [Number],   // vector stored here
-        default: [],
-    },
-
     collectionId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Collections",
