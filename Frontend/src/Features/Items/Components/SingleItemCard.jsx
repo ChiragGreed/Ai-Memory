@@ -1,17 +1,20 @@
 import './style/ItemCard.scss'
 
-const SingleItemCard = ({ item }) => {
+const SingleItemCard = ({ item, Loading }) => {
 
-    function SingleItemCardRender({ item }) {
-        console.log(item);
-        if (!item) return;
+    if (Loading) {
+        return <h1 style={{ textAlign: 'center', marginTop: '10%', fontSize: '20px', color: '#fff' }}>Loading...</h1>;
+    }
 
-        return <article className="item-card">
+    if (!item) return null;
+
+    return (
+        <article className="item-card">
 
             <div className="item-card__body">
 
                 <div className='Item_thumbnail'>
-                    <img src={item.previewImage} />
+                    <img src={item.previewImage} alt={item.title || ''} />
                 </div>
                 
                 <h2 className="item-card__title">
@@ -47,8 +50,6 @@ const SingleItemCard = ({ item }) => {
 
                 )}
 
-
-
                 {item.createdAt && (
 
                     <div className="item-card__date">
@@ -64,8 +65,6 @@ const SingleItemCard = ({ item }) => {
             {item.url && (
 
                 <div className="item-card__footer">
-
-
 
                     <a
                         href={item.url}
@@ -83,13 +82,8 @@ const SingleItemCard = ({ item }) => {
             )}
 
         </article>
-    }
-
-    return (
-        <div>
-            <SingleItemCardRender item={item} />
-        </div>
     )
 }
 
 export default SingleItemCard
+

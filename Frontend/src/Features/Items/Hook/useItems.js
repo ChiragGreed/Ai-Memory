@@ -31,7 +31,8 @@ const useItems = () => {
     const searchItemsHandler = async (Query) => {
 
         try {
-            setLoading(true)
+            setLoading(true);
+            setItems(null);
             const res = await searchItemsApi(Query);
             setItems(res.items)
 

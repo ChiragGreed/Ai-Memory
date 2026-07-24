@@ -5,11 +5,11 @@ const ItemCard = ({ items, Loading }) => {
   const navigate = useNavigate();
 
   if (Loading) {
-    return <h1 style={{ textAlign: 'center', fontSize: '20px', color: '#fff' }}>Loading...</h1>;
+    return <h1 style={{ textAlign: 'center', marginTop: '10%', fontSize: '20px', color: '#fff' }}>Loading...</h1>;
   }
 
   if (!items || items.length === 0) {
-    return <h1 style={{ textAlign: 'center', fontSize: '20px', color: '#fff' }}>No Items Found</h1>;
+    return <h1 style={{ textAlign: 'center', marginTop: '10%', fontSize: '20px', color: '#fff' }}>Nothing to show</h1>;
   }
 
   return (

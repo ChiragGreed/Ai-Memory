@@ -20,7 +20,7 @@ const ItemDets = () => {
     return (
         <div className='ItemsDetsPage'>
             <div className='item'>
-                <SingleItemCard item={SingleItem} />
+                <SingleItemCard item={SingleItem} Loading={Loading} />
             </div>
 
             <h2 className='related_items_label'>Related suggestions</h2>

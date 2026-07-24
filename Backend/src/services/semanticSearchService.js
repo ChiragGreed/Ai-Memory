@@ -11,8 +11,8 @@ export const semanticSearch = async (userid, query) => {
         filter: { userid: { $eq: userid } },
         includeMetadata: true
     });
-    
-    const items = await itemModel.find({ _id: { $in: result.matches.map(match => { if (match.score > 0.6) { return match.metadata.itemId } }) } });
+
+    const items = await itemModel.find({ _id: { $in: result.matches.map(match => { if (match.score > 0.71) { return match.id } }) } });
 
     return items;
 

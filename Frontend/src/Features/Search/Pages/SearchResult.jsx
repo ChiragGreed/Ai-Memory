@@ -14,8 +14,10 @@ const SearchResult = () => {
     const query = searchParams.get("query");
 
     useEffect(() => {
-        searchItemsHandler(query);
-    }, [])
+        if (query) {
+            searchItemsHandler(query);
+        }
+    }, [query]);
 
 
     return (

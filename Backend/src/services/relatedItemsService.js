@@ -12,16 +12,24 @@ export const RelatedItemService = async (userid, item) => {
         filter: {
             $and: [
                 { userid: { $eq: userid } },
-                { itemId: { $ne: item._id } }
+                { id: { $ne: item._id } }
             ]
         },
         includeMetadata: true
     });
 
-    // console.log(result);
 
-    const items = await itemModel.find({ _id: { $in: result.matches.map((match) => { if (match.score > 0.75) { return match.metadata.itemId } }) } });
+    const targetIds = result.matches
+        .filter(match => match.score > 0.75 && match.id !== item._id.toString())
+        .map(match => match.id);
 
+
+    if (targetIds.length === 0) {
+        return [];
+    }
+
+    const items = await itemModel.find({ _id: { $in: targetIds.slice(0, 5) } });
+    console.log(items);
     return items;
 
 }

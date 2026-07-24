@@ -10,6 +10,7 @@ import { RelatedItemService } from "../services/relatedItemsService.js";
 import { semanticSearch } from "../services/semanticSearchService.js";
 import { getResurfacedItems } from "../services/resurfaceService.js";
 import { getLinkPreview } from "../utils/preview.util.js";
+import { index } from "../config/database.js";
 
 
 
@@ -54,7 +55,7 @@ export const saveItem = async (req, res) => {
 
         const tags = await generateTags(content);
 
-        const records = await saveEmbedding(content);
+        const embeddings = await saveEmbedding(content);
         const preview = await getLinkPreview(url);
 
         const item = await itemModel.create({
@@ -68,10 +69,8 @@ export const saveItem = async (req, res) => {
             userId: userid
         });
 
-        const pinconeStore = await index.upsert({
-            records: records.map((rec, idx) => {
-                return { id: `${idx}`, values: rec.embeddings, metadata: { itemId: item._id, userid: String(userid) } }
-            })
+        await index.upsert({
+            records: [{ id: `${item._id}`, values: embeddings, metadata: { userid: String(userid) } }]
         })
 
         if (collectionId) await collectionModel.findByIdAndUpdate(collectionId, { $inc: { itemCount: 1 } });

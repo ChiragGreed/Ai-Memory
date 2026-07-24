@@ -12,7 +12,7 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (query.trim()) navigate(`/app/searchResult?query=${query}`);
+    if (query.trim()) navigate(`/app/searchResult?query=${encodeURIComponent(query.trim())}`);
   };
 
   return (
