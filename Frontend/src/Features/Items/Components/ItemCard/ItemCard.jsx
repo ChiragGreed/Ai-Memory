@@ -1,11 +1,43 @@
 import { useNavigate } from 'react-router-dom';
 import '../style/ItemCard.scss';
 
+const ItemCardSkeleton = ({ count = 6 }) => {
+  return (
+    <div className="items_grid">
+      {Array.from({ length: count }).map((_, idx) => (
+        <article key={idx} className="item-card item-card--skeleton">
+          <div className="Item_thumbnail skeleton-box" />
+
+          <div className="item-card__body">
+            <div className="skeleton-line skeleton-title" />
+            <div className="skeleton-line skeleton-summary" />
+            <div className="skeleton-line skeleton-summary-short" />
+
+            <div className="item-card__tags">
+              <div className="skeleton-tag" />
+              <div className="skeleton-tag" />
+              <div className="skeleton-tag" />
+            </div>
+
+            <div className="item-card__date">
+              <div className="skeleton-line skeleton-date" />
+            </div>
+          </div>
+
+          <div className="item-card__footer">
+            <div className="skeleton-line skeleton-link" />
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+};
+
 const ItemCard = ({ items, Loading }) => {
   const navigate = useNavigate();
 
   if (Loading) {
-    return <h1 style={{ textAlign: 'center', marginTop: '10%', fontSize: '20px', color: '#fff' }}>Loading...</h1>;
+    return <ItemCardSkeleton count={6} />;
   }
 
   if (!items || items.length === 0) {

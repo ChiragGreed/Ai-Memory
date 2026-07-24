@@ -21,8 +21,14 @@ const SearchResult = () => {
 
 
     return (
-        <div>
-            <ItemCard items={Items} Loading={Loading} />
+        <div className="screen">
+            <div className="screen__header">
+                <div className="screen__eyebrow">Search</div>
+                <div className="screen__title">Results for "{query || ''}"</div>
+            </div>
+            <div className="screen__body" style={{ padding: 0 }}>
+                <ItemCard items={Items} Loading={Loading} />
+            </div>
         </div>
     )
 }

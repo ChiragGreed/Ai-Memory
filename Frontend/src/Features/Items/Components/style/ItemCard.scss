@@ -2,10 +2,13 @@
 
 .items_grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
   padding: 28px 32px;
   width: 100%;
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 // ── Item Card ─────────────────────────────────────────────────────────────
@@ -23,14 +26,16 @@
   &:hover {
     border-color: var(--border2);
     transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
   }
 
   // amber left-border reveal on hover
   &::after {
     content: '';
     position: absolute;
-    left: 0; top: 0; bottom: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
     width: 2px;
     background: var(--amber);
     transform: scaleY(0);
@@ -46,7 +51,7 @@
 // ── Thumbnail ─────────────────────────────────────────────────────────────
 .Item_thumbnail {
   width: 100%;
-  height: 140px;
+  height: 20rem;
   overflow: hidden;
   background: var(--bg3);
   flex-shrink: 0;
@@ -116,7 +121,7 @@
   &:hover {
     background: var(--amber-dim);
     color: var(--amber);
-    border-color: rgba(232,169,48,0.2);
+    border-color: rgba(232, 169, 48, 0.2);
   }
 }
 
@@ -176,7 +181,88 @@
   }
 }
 
-// ── Loading label ─────────────────────────────────────────────────────────
+// ── Loading Skeleton ───────────────────────────────────────────────────────
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.item-card--skeleton {
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border);
+  }
+
+  &::after {
+    display: none;
+  }
+}
+
+.skeleton-box,
+.skeleton-line,
+.skeleton-tag {
+  background: linear-gradient(90deg,
+      var(--bg3, #1e1e24) 25%,
+      rgba(255, 255, 255, 0.08) 50%,
+      var(--bg3, #1e1e24) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.6s infinite ease-in-out;
+  border-radius: 4px;
+}
+
+.skeleton-box {
+  width: 100%;
+  height: 20rem;
+  flex-shrink: 0;
+}
+
+.skeleton-line {
+  height: 12px;
+
+  &.skeleton-title {
+    height: 22px;
+    width: 75%;
+    margin-bottom: 4px;
+    border-radius: 6px;
+  }
+
+  &.skeleton-summary {
+    width: 95%;
+    height: 12px;
+  }
+
+  &.skeleton-summary-short {
+    width: 65%;
+    height: 12px;
+  }
+
+  &.skeleton-date {
+    width: 90px;
+    height: 10px;
+  }
+
+  &.skeleton-link {
+    width: 80px;
+    height: 12px;
+  }
+}
+
+.skeleton-tag {
+  width: 48px;
+  height: 18px;
+  border-radius: 4px;
+}
+
 .loading_label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;

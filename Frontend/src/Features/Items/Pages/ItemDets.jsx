@@ -18,14 +18,18 @@ const ItemDets = () => {
 
 
     return (
-        <div className='ItemsDetsPage'>
-            <div className='item'>
-                <SingleItemCard item={SingleItem} Loading={Loading} />
+        <div className="screen">
+            <div className="screen__body">
+                <div className='ItemsDetsPage'>
+                    <div className='item'>
+                        <SingleItemCard item={SingleItem} Loading={Loading} />
+                    </div>
+
+                    <h2 className='related_items_label'>Related suggestions</h2>
+
+                    <ItemCard items={Items} Loading={Loading} />
+                </div>
             </div>
-
-            <h2 className='related_items_label'>Related suggestions</h2>
-
-            <ItemCard items={Items} Loading={Loading} />
         </div>
     )
 }

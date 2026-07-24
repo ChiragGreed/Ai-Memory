@@ -1,15 +1,21 @@
 .ItemsDetsPage {
-
     display: flex;
     flex-direction: column;
+    width: 100%;
+    flex: 1;
+    min-width: 0;
 
-    .item{
-        margin-bottom:5rem;
+    .item {
+        margin-bottom: 3rem;
+        width: 100%;
     }
 
     .related_items_label {
-        color: white;
-        font-size: 2rem;
-        text-decoration: underline;
+        font-family: 'Instrument Serif', Georgia, serif;
+        color: var(--ink, #fff);
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+        padding-left: 32px;
     }
 }

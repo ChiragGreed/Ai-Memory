@@ -3,7 +3,29 @@ import './style/ItemCard.scss'
 const SingleItemCard = ({ item, Loading }) => {
 
     if (Loading) {
-        return <h1 style={{ textAlign: 'center', marginTop: '10%', fontSize: '20px', color: '#fff' }}>Loading...</h1>;
+        return (
+            <article className="item-card item-card--skeleton">
+                <div className="item-card__body">
+                    <div className="Item_thumbnail skeleton-box" />
+                    <div className="skeleton-line skeleton-title" />
+                    <div className="skeleton-line skeleton-summary" />
+                    <div className="skeleton-line skeleton-summary-short" />
+
+                    <div className="item-card__tags">
+                        <div className="skeleton-tag" />
+                        <div className="skeleton-tag" />
+                    </div>
+
+                    <div className="item-card__date">
+                        <div className="skeleton-line skeleton-date" />
+                    </div>
+                </div>
+
+                <div className="item-card__footer">
+                    <div className="skeleton-line skeleton-link" />
+                </div>
+            </article>
+        );
     }
 
     if (!item) return null;
