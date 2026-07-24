@@ -1,10 +1,19 @@
 import { createQueryEmbedding } from "./embeddingService.js"
-import { vectorSearch } from "../utils/vector.util.js"
+import itemModel from "../Models/itemModel.js";
+import { index } from "../config/database.js";
 
 export const semanticSearch = async (userid, query) => {
+    const QueryEmbedding = await createQueryEmbedding(query);
 
-    const embedding = await createQueryEmbedding(query);
-// Query se result bhi aayega kya
-    return vectorSearch({ userid: userid, embedding })
+    const result = await index.query({
+        topK: 8,
+        vector: QueryEmbedding,
+        filter: { userid: { $eq: userid } },
+        includeMetadata: true
+    });
+    
+    const items = await itemModel.find({ _id: { $in: result.matches.map(match => { if (match.score > 0.6) { return match.metadata.itemId } }) } });
+
+    return items;
 
 }

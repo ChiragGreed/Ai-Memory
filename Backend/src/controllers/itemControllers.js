@@ -10,9 +10,7 @@ import { RelatedItemService } from "../services/relatedItemsService.js";
 import { semanticSearch } from "../services/semanticSearchService.js";
 import { getResurfacedItems } from "../services/resurfaceService.js";
 import { getLinkPreview } from "../utils/preview.util.js";
-import { Pinecone } from '@pinecone-database/pinecone';
 
-const pc = new Pinecone({ apiKey: process.env.PINCONE_API });
 
 
 export const saveItem = async (req, res) => {
@@ -59,15 +57,6 @@ export const saveItem = async (req, res) => {
         const records = await saveEmbedding(content);
         const preview = await getLinkPreview(url);
 
-        const index = pc.index('vexa-embeddings');
-
-        const pinconeStore = await index.upsert({
-            records: records.map((rec, idx) => {
-                return { id: `${idx}`, values: rec.embeddings, metadata: { text: rec.text } }
-            })
-        })
-
-
         const item = await itemModel.create({
             title: title || preview.previewTitle,
             summary: summary,
@@ -78,6 +67,12 @@ export const saveItem = async (req, res) => {
             collectionId,
             userId: userid
         });
+
+        const pinconeStore = await index.upsert({
+            records: records.map((rec, idx) => {
+                return { id: `${idx}`, values: rec.embeddings, metadata: { itemId: item._id, userid: String(userid) } }
+            })
+        })
 
         if (collectionId) await collectionModel.findByIdAndUpdate(collectionId, { $inc: { itemCount: 1 } });
 
@@ -111,8 +106,7 @@ export const getItems = async (req, res) => {
     })
 }
 
-export const getSingleItem = async (req, res) => {
-
+export const getItemDetails = async (req, res) => {
 
     const { userid } = req.user;
 
@@ -132,32 +126,17 @@ export const getSingleItem = async (req, res) => {
         error: "No item found with given Item Id"
     })
 
+    const related = await RelatedItemService(userid, item)
+
     res.status(200).json({
         message: "Item fetched for user",
         success: true,
-        item
-    })
-
-}
-
-export const getRelatedItems = async (req, res) => {
-
-    const { userid } = req.user;
-    const { itemId } = req.params
-
-    if (!itemId) return res.status(400).json({
-        message: "Item id missing in params",
-        success: false,
-        err: "Missing itemId"
-    })
-    const related = await RelatedItemService(userid, itemId)
-
-    res.json({
-        success: true,
+        item,
         related
     })
 
 }
+
 
 export const semanticSearchItems = async (req, res) => {
 
@@ -174,7 +153,7 @@ export const semanticSearchItems = async (req, res) => {
 
         }
 
-        const results = await semanticSearch(userid, query)
+        const results = await semanticSearch(userid, query);
 
         res.json({
 

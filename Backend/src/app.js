@@ -21,7 +21,7 @@ app.use(express.static(publicFile))
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://vexa-second-brain.onrender.com',
     credentials: true
 }));
 

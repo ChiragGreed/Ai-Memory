@@ -4,7 +4,7 @@ export const generateTags = async (content) => {
 
  const prompt = `
 
-Extract 5 topic tags from the text.
+create 5 topic tags from the text.
 
 Rules:
 - each tag must be 1 or 2 words

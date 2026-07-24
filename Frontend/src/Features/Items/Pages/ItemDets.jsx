@@ -7,13 +7,12 @@ import { useParams } from 'react-router-dom'
 
 const ItemDets = () => {
 
-    const { context_items, getRelatedItemHandler, getSingleItemHandler } = useItems();
-    const { Items, SingleItem } = context_items;
+    const { context_items, getItemDetsHandler } = useItems();
+    const { Items, SingleItem, Loading } = context_items;
     const { itemId } = useParams();
 
     useEffect(() => {
-        getSingleItemHandler(itemId);
-        getRelatedItemHandler(itemId);
+        getItemDetsHandler(itemId);
     }, [itemId])
 
 
@@ -26,7 +25,7 @@ const ItemDets = () => {
 
             <h2 className='related_items_label'>Related suggestions</h2>
 
-            <ItemCard items={Items} />
+            <ItemCard items={Items} Loading={Loading} />
         </div>
     )
 }

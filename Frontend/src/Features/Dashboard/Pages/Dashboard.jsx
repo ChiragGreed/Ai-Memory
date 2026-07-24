@@ -13,12 +13,10 @@ const Dashboard = () => {
     }, [])
 
 
-    if (Loading) return <div><h1 className='loading_label'>Loading</h1></div>
-
     return (
 
         <div>
-            <ItemCard items={Items} />
+            <ItemCard items={Items} Loading={Loading} />
         </div>
     )
 }

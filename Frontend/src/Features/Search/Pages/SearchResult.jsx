@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 const SearchResult = () => {
 
     const { context_items, searchItemsHandler } = useItems();
-    const { Items } = context_items;
+    const { Items, Loading } = context_items;
 
     const [searchParams] = useSearchParams();
 
@@ -20,7 +20,7 @@ const SearchResult = () => {
 
     return (
         <div>
-            <ItemCard items={Items} />
+            <ItemCard items={Items} Loading={Loading} />
         </div>
     )
 }

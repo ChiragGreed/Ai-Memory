@@ -1,23 +1,27 @@
-import Item from "../Models/itemModel.js"
-import { vectorSearch } from "../utils/vector.util.js"
+import { index } from "../config/database.js";
+import itemModel from "../Models/itemModel.js";
+import { useQueryEmbedding } from "./aiServices.js";
 
-export const RelatedItemService = async (userid, itemId) => {
+export const RelatedItemService = async (userid, item) => {
 
+    const QueryEmbedding = await useQueryEmbedding(item.content);
 
-    const item = await Item.findOne({ _id: itemId })
+    const result = await index.query({
+        topK: 5,
+        vector: QueryEmbedding,
+        filter: {
+            $and: [
+                { userid: { $eq: userid } },
+                { itemId: { $ne: item._id } }
+            ]
+        },
+        includeMetadata: true
+    });
 
+    // console.log(result);
 
+    const items = await itemModel.find({ _id: { $in: result.matches.map((match) => { if (match.score > 0.75) { return match.metadata.itemId } }) } });
 
-    return vectorSearch({
-        userid: userid,
-        embedding: item.embedding,
-
-        excludeId: itemId,
-
-        limit: 5,
-
-        threshold: 0.65
-
-    })
+    return items;
 
 }

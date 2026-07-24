@@ -11,13 +11,8 @@ export const getItemsApi = async () => {
     return response.data;
 }
 
-export const getSingleItemApi = async (itemId) => {
+export const getItemDetailsApi = async (itemId) => {
     const response = await api.get(`/${itemId}`);
-    return response.data;
-}
-
-export const getRelatedItemApi = async (itemId) => {
-    const response = await api.get(`/getRelatedItems/${itemId}`);
     return response.data;
 }
 

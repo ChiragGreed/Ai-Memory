@@ -9,8 +9,9 @@ import { useParams } from 'react-router-dom';
 const CollectionDets = () => {
 
     const { context_items } = useItems();
-    const { getCollectionItemsHandler } = useCollections();
+    const { context_collections, getCollectionItemsHandler } = useCollections();
     const { Items } = context_items;
+    const { Loading } = context_collections;
 
     const {collectionId} = useParams();
 
@@ -20,7 +21,7 @@ const CollectionDets = () => {
 
     return (
         <div>
-            <ItemCard items={Items} />
+            <ItemCard items={Items} Loading={Loading} />
         </div>
     )
 }

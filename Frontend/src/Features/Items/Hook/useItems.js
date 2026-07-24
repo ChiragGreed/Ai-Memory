@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { getItemsApi, getRelatedItemApi, getSingleItemApi, resurfacingItemsApi, searchItemsApi } from '../Services/itemsApi.js'
+import { getItemsApi, getItemDetailsApi, resurfacingItemsApi, searchItemsApi } from '../Services/itemsApi.js'
 import { itemsContext } from "../State/ItemsContext";
 
 
@@ -27,42 +27,6 @@ const useItems = () => {
 
     }
 
-    const getSingleItemHandler = async (itemId) => {
-        try {
-            setLoading(true);
-
-            const response = await getSingleItemApi(itemId);
-            setSingleItem(response.item);
-            setLoading(false);
-
-        }
-        catch (err) {
-            return err;
-        }
-        finally {
-            setLoading(false)
-        }
-
-    }
-
-    const getRelatedItemHandler = async (itemId) => {
-
-        try {
-            setLoading(true);
-
-            const response = await getRelatedItemApi(itemId);
-            setItems(response.related);
-            setLoading(false);
-
-        }
-        catch (err) {
-            return err;
-        }
-        finally {
-            setLoading(false)
-        }
-
-    }
 
     const searchItemsHandler = async (Query) => {
 
@@ -100,7 +64,22 @@ const useItems = () => {
 
     }
 
-    return ({ context_items, getItemsHandler, getSingleItemHandler, resurfaceItemsHandler, getRelatedItemHandler, searchItemsHandler })
+    const getItemDetsHandler = async (itemId) => {
+        try {
+            setLoading(true);
+            const response = await getItemDetailsApi(itemId)
+            setItems(response.related);
+            setSingleItem(response.item);
+        }
+        catch (err) {
+            return err;
+        }
+        finally {
+            setLoading(false);
+        }
+    }
+
+    return ({ context_items, getItemsHandler, resurfaceItemsHandler, searchItemsHandler, getItemDetsHandler })
 }
 
 export default useItems

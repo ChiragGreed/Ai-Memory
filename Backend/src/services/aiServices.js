@@ -25,6 +25,5 @@ export const useEmbeddingGeneration = async (chunks) => {
 export const useQueryEmbedding = async (prompt) => {
 
   const res = await MistralAiModel.embedQuery(prompt);
-  console.log(res);
   return res;
 };
