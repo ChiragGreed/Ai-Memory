@@ -22,10 +22,3 @@ export const cosineSimilarity = (vecA, vecB) => {
  return dotProduct / (magA * magB)
 
 }
-
-// Score meaning
-
-// 1 = very similar
-// 0.8 = related
-// 0.5 = somewhat related
-// 0 = unrelated

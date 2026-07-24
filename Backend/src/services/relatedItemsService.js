@@ -29,7 +29,6 @@ export const RelatedItemService = async (userid, item) => {
     }
 
     const items = await itemModel.find({ _id: { $in: targetIds.slice(0, 5) } });
-    console.log(items);
     return items;
 
 }
