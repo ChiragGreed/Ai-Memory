@@ -153,22 +153,19 @@ export const semanticSearchItems = async (req, res) => {
         }
 
         const results = await semanticSearch(userid, query);
-
-        res.json({
-
+        
+        res.status(200).json({
+            message: "Items fetched for user",
+            success: true,
             total: results.length,
             items: results
-
         })
 
     }
     catch (err) {
 
-        console.error(err, "HELO");
-
         res.status(500).json({
-            // error: err.message
-            message: "HEHE"
+            error: err.message
         })
 
     }
